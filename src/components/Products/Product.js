@@ -14,12 +14,15 @@ const Product = () => {
         setProduct(json);
         console.log(json);
       });
-  },[]);
-  return (!products.length ? <Loder/>:
-      products.map((item, i) => 
-         <Card key={i} item={item} />
-      )
-    
+  }, []);
+  return !products.length ? (
+    <Loder />
+  ) : (
+    <div className="flex flex-wrap">
+      {products.map((item, i) => 
+        <Card key={i} item={item} />
+    )}
+    </div>
   );
 };
 
