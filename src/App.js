@@ -15,6 +15,7 @@ import Auth from "./components/Auth";
 import Detail from "./components/Detail/Detail";
 import Header from "./components/Dashboard/Header/Header";
 import Cart from "./components/Cart/Cart";
+import Order from "./components/Order/Order";
 
 function App() {
   const [cart, setCart] = useState([]);
@@ -29,6 +30,8 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/product" element={<Products />} />
+          <Route path="/cart" element={<Cart setCart={setCart} cart={cart} />} />
+          <Route path="/cart/placeOrder" element={<Order/>} />
           <Route
             path="/product/:id"
             element={<Detail cart={cart} setCart={setCart} />}

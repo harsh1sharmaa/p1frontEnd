@@ -27,7 +27,6 @@ const Detail = ({ cart, setCart }) => {
       console.log(product);
       if (item.id ===product.id){
         id=item.id;
-        console.log("rerrrrrrrrrwwwwwwwww")
       }
     });
     console.log("id")
@@ -41,14 +40,6 @@ const Detail = ({ cart, setCart }) => {
     } else {
       newCart = [...cart, { ...product, quantity: 1 }];
     }
-    // let modifiedArr = cart.map(function (element) {
-    //   if (element.id === product.id) {
-    //     element.quantity = element.quantity + 1;
-    //     return element;
-    //   } else {
-    //     element.quantity = 1;
-    //   }
-    // });
     console.log(newCart);
 
     setCart(newCart);
