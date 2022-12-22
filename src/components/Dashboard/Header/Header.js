@@ -67,7 +67,7 @@ const Header = ({ cart }) => {
                   go to Cart
                 </NavLink>
               </li>
-              <li className="nav-item mb-2 lg:mb-0">cart Item={cart.length}</li>
+              <li className="nav-item mb-2 lg:mb-0">cart Item={ cart.length}</li>
             </ul>
           </div>
         </div>

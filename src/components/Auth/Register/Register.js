@@ -8,6 +8,8 @@ import Button from "react-bootstrap/Button";
 
 function Register() {
   const [email, setEmail] = useState("");
+  const [name, setName] = useState("");
+  const [phone, setPhone] = useState("");
 
   const [password, setPassword] = useState("");
   const [RePassword, setRePassword] = useState("");
@@ -21,7 +23,7 @@ function Register() {
   function handleSubmit(event) {
     event.preventDefault();
     console.log(RePassword);
-    /* fetch("http://localhost:4000/users/register", {
+    fetch("http://localhost:4000/users/register", {
       crossDomain: true,
       method: "POST",
       headers: {
@@ -29,9 +31,11 @@ function Register() {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        name: "harsh Sharma",
+        name: name,
         email: email,
+        phone: phone,
         password: password,
+        RePassword: RePassword,
       }),
     }).then(async (response) => {
       let cachedPostData = await response.json();
@@ -41,17 +45,27 @@ function Register() {
       if (cachedPostData.success === true) {
         setotpModal(true);
       }
-    }); */
+    });
     setotpModal(true);
   }
 
   return (
     <>
       {otpModal ? (
-        <Otp handleOtp={setValidateOtp} />
+        <Otp handleOtp={setValidateOtp} name={name} email={email} />
       ) : (
         <div   className="md:container md:mx-auto">
           <Form onSubmit={handleSubmit}>
+            <Form.Group size="lg" controlId="email">
+              <Form.Label>Name</Form.Label>
+
+              <Form.Control
+                autoFocus
+                type="text"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+              />
+            </Form.Group>
             <Form.Group size="lg" controlId="email">
               <Form.Label>Email</Form.Label>
 
@@ -60,6 +74,16 @@ function Register() {
                 type="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
+              />
+            </Form.Group>
+            <Form.Group size="lg" controlId="email">
+              <Form.Label>phone</Form.Label>
+
+              <Form.Control
+                autoFocus
+                type="number"
+                value={phone}
+                onChange={(e) => setPhone(e.target.value)}
               />
             </Form.Group>
 

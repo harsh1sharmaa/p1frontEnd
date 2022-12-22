@@ -25,11 +25,34 @@ function Login(props) {
   function handleSubmit(event) {
     event.preventDefault();
 
-    console.log(email);
     setLoder(true);
-    setTimeout(() => {
-      navigate("/dashboard", { state: { token: "eyterty4356yt4e78u56tu" } });
-    }, 3000);
+    fetch("http://localhost:4000/users/login", {
+      crossDomain: true,
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        
+        email: email,
+        password: password
+      }),
+    }).then(async (response) => {
+      let cachedPostData = await response.json();
+      console.log("cachedPostData");
+      console.log(cachedPostData);
+      // return cachedPostData;
+      if (cachedPostData.success === true) {
+        // setotpModal(true);
+        navigate("/dashboard",{ state: {token:cachedPostData.data.token }});
+      }
+    });
+
+    // console.log(email);
+    // setTimeout(() => {
+    //   navigate("/dashboard", { state: { token: "eyterty4356yt4e78u56tu" } });
+    // }, 3000);
   }
 
   return (
