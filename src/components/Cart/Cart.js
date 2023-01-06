@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import Table from "./Table/Table";
 import { NavLink } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+
 
 
 const Cart = ({ setCart, cart }) => {

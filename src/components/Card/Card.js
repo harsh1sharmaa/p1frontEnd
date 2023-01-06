@@ -3,16 +3,16 @@ import { NavLink } from "react-router-dom";
 const Card = ({ item }) => {
   const { title ,image, id} = item;
   return (
-    <div className="flex  w-25 p-5" >
+    <div className="w-25 p-5">
       <div className="rounded-lg shadow-lg bg-white max-w-sm">
-        <a href="#!" data-mdb-ripple="true" data-mdb-ripple-color="light">
+        <NavLink to={`${id}`} data-mdb-ripple="true" data-mdb-ripple-color="light">
           <img
             className="rounded-t-lg"
             src={image}
             alt=""
             // style={{height: "70px"}}
           />
-        </a>
+        </NavLink>
         <div className="p-6">
           <h5 className="text-gray-900 text-xl font-medium mb-2">{title}</h5>
           <p className="text-gray-700 text-base mb-4">

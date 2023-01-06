@@ -1,0 +1,27 @@
+.Table{
+    height: 100%;
+    margin-top: 50px;
+}
+.td-1{
+    width: 10%;
+}
+.td-2{
+    width: 40%;
+}
+.td-3{
+    width: 10%;
+}
+.td-4{
+    width: 15%;
+}
+.td-4{
+    width: 15%;
+}
+.tablerow{
+    padding-top:200px;
+
+}
+.tr-input{
+background-color: gray;
+width: 50%;
+}

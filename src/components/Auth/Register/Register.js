@@ -5,25 +5,30 @@ import Otp from "../Otp/Otp";
 // import "./.css";
 
 import Button from "react-bootstrap/Button";
+import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
+import { auth } from "../Firebase/Firebase";
 
 function Register() {
   const [email, setEmail] = useState("");
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
+  const [image, setImage] = useState("");
 
   const [password, setPassword] = useState("");
   const [RePassword, setRePassword] = useState("");
   const [otpModal, setotpModal] = useState(false);
   const [validateOtp, setValidateOtp] = useState(false);
+  const [clicked, setClicked] = useState(false);
 
   function validateForm() {
     return email.length > 0 && password.length > 0;
   }
 
   function handleSubmit(event) {
+    setClicked(true);
     event.preventDefault();
     console.log(RePassword);
-    fetch("http://localhost:4000/users/register", {
+       fetch("http://localhost:4000/users/register", {
       crossDomain: true,
       method: "POST",
       headers: {
@@ -46,7 +51,23 @@ function Register() {
         setotpModal(true);
       }
     });
-    setotpModal(true);
+
+
+   /*  createUserWithEmailAndPassword(auth, email, password)
+      .then((res) => {
+        console.log(res);
+        const user = res.user;
+        updateProfile(user, {
+          displayName: name,
+          photoURL: image,
+        });
+
+        setClicked(false);
+      })
+      .catch((err) => {
+        console.log(err);
+      }); */
+    // setotpModal(true);
   }
 
   return (
@@ -54,8 +75,18 @@ function Register() {
       {otpModal ? (
         <Otp handleOtp={setValidateOtp} name={name} email={email} />
       ) : (
-        <div   className="md:container md:mx-auto">
+        <div className="md:container md:mx-auto">
           <Form onSubmit={handleSubmit}>
+            <Form.Group size="lg" controlId="email">
+              <Form.Label>image</Form.Label>
+
+              <Form.Control
+                autoFocus
+                type="file"
+                value={image}
+                onChange={(e) => setImage(e.target.value)}
+              />
+            </Form.Group>
             <Form.Group size="lg" controlId="email">
               <Form.Label>Name</Form.Label>
 
@@ -107,7 +138,7 @@ function Register() {
               />
             </Form.Group>
 
-            <Button block size="lg" type="submit" disabled={!validateForm()}>
+            <Button disabled={clicked} block size="lg" type="submit">
               Register
             </Button>
           </Form>

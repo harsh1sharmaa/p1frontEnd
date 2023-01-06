@@ -7,7 +7,7 @@ const Product = () => {
   const [products, setProduct] = useState([]);
   useEffect(() => {
     // Update the document title using the browser API
-    document.title = `You clicked $} times`;
+    // document.title = `You clicked $} times`;
     fetch("https://fakestoreapi.com/products")
       .then((res) => res.json())
       .then((json) => {
@@ -18,7 +18,7 @@ const Product = () => {
   return !products.length ? (
     <Loder />
   ) : (
-    <div className="flex flex-wrap">
+    <div className="flex">
       {products.map((item, i) => 
         <Card key={i} item={item} />
     )}

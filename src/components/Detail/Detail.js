@@ -2,6 +2,7 @@ import userEvent from "@testing-library/user-event";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import Loder from "../Loder/Loder";
+import { NavLink } from "react-router-dom";
 const Detail = ({ cart, setCart }) => {
   const params = useParams();
   console.log(params.id);
@@ -60,7 +61,17 @@ const Detail = ({ cart, setCart }) => {
           add to cart
         </button>
       </div>
-      <div className="px-6 pt-4 pb-2"></div>
+      <div className="px-6 pt-4 pb-2">
+      <NavLink
+                  to="/cart"
+                  className="nav-link block pr-2 lg:px-2 py-2 text-gray-600 hover:text-gray-700 focus:text-gray-700 transition duration-150 ease-in-out"
+                  href="#!"
+                  data-mdb-ripple="true"
+                  data-mdb-ripple-color="light"
+                >
+                  go to Cart
+                </NavLink>
+      </div>
     </div>
   );
 };
